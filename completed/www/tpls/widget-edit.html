@@ -1,0 +1,31 @@
+<form>
+
+	<div>
+		<label>Name: <input type="text" ng-model="widget.name"></label>
+	</div>
+	<div>
+		<label>Description: <textarea ng-model="widget.description" rows="5" cols="60"></textarea></label>
+	</div>
+	<div>
+		<label>Color:
+			<select ng-model="widget.color" ng-options="color.value as color.label for color in colors">
+				<option value="">Select One</option>
+			</select>
+		</label>
+	</div>
+	<div>
+		<label>Size:
+			<select ng-model="widget.size" ng-options="size.value as size.label for size in sizes">
+				<option value="">Select One</option>
+			</select>
+		</label>
+	</div>
+	<div>
+		<label>Quantity: <input type="number" ng-model="widget.quantity"></label>
+	</div>
+
+	<button class="btn btn-primary" ng-click="saveWidget(widget)">Save Widget</button>
+	<button class="btn btn-danger" ng-if="widget.id" ng-click="deleteWidget(widget.id)">Delete Widget</button>
+	<button class="btn btn-default" ng-click="returnToList()">Return to List</button>
+
+</form>
