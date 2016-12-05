@@ -8,11 +8,11 @@ Eric Greene [linkedin.com/in/ericwgreene](linkedin.com/in/ericwgreene)
 
 Classes:
 
-Intermediate JavaScript
-- Monday - Wednesday: 9:00am to 5:00pm
-
 Advanced Angular.js
-- Thursday - Friday: 9:00am to 5:00pm
+- Monday - Tuesday: 9:00am to 5:00pm
+
+Intermediate JavaScript
+- Wednesday - Friday: 9:00am to 5:00pm
 
 Breaks:
 - Morning: 10:30am to 10:40am
@@ -22,17 +22,16 @@ Breaks:
 
 ## Course Outline
 
-Intermediate JavaScript (Monday - Wednesday)
-
-- Day 1 - Functions, Value of This, Objects, Events Driven Programming
-- Day 2 - DOM, Asynchronous Programming, AJAX, Promises, Closures
-- Day 3 - Regular Expressions, Project Configuration, Patterns
-
-Advanced Angular.js (Thursday - Friday)
+Advanced Angular.js (Monday - Tuesday)
 
 - Day 1 - Introduction to Components
 - Day 2 - Advanced Components
 
+Intermediate JavaScript (Wednesday - Friday)
+
+- Day 1 - Functions, Value of This, Objects, Events Driven Programming
+- Day 2 - DOM, Asynchronous Programming, AJAX, Promises, Closures
+- Day 3 - Regular Expressions, Project Configuration, Patterns
 
 ## Links
 
