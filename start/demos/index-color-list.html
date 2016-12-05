@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Angular.js Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+
+		<main class="container" ng-app="MyApp">
+
+			<color-list header="header" color-list="colors"></color-list>
+		</main>
+
+		<script src="js/ng/angular.js"></script>
+		<script>
+
+			'use strict';
+
+			angular.module("MyApp", [])
+				.component("colorItem", {
+					template: `{{vm.color}} <button type="button" ng-click="vm.removeColor({ color: vm.color })">X</button>`,
+					bindings: {
+						color: '<',
+						removeColor: '&'
+					},
+					controllerAs: 'vm',
+					controller: function() {
+
+
+					}
+				})
+				.component("colorList", {
+					template: `
+					<header>
+						<h2>{{vm.header}}</h2>
+					</header>
+					<ul>
+						<li ng-repeat='color in vm.colorList'>
+							<color-item color="color" remove-color="vm.removeColor(color)"></color-item>
+						</li>
+					</ul>
+					<form>
+						<label for="new-color-input">New Color</label>
+						<input type="text" id="new-color-input" ng-model="vm.newColor" ng-keydown="vm.addColor($event)">
+						<button type="button" ng-click="vm.addColor($event)">Add Color</button>
+					</form>`,
+					bindings: {
+						colorList: '=',
+						header: '<'
+					},
+					controllerAs: 'vm',
+					controller: function() {
+
+						var vm = this;
+
+						vm.addColor = function(e) {
+
+							if ((e.target.type = 'keydown' && e.keyCode === 13) || e.target.tyye === 'button') {
+								vm.colorList.push(vm.newColor);
+								vm.newColor = '';
+							}
+						};
+
+						vm.removeColor = function(colorToRemove) {
+
+							vm.colorList = vm.colorList.filter(function(color) {
+								return color !== colorToRemove;
+							});
+
+						}
+
+					}
+				})
+				.run(function($rootScope) {
+
+					$rootScope.header = "Color List"
+					
+					$rootScope.colors = ['red','white','blue'];
+
+				});
+
+		</script>
+
+	</body>
+
+</html>

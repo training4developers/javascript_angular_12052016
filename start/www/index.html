@@ -14,7 +14,9 @@
 	<body>
 
 		<main class="container" ng-app="MyApp">
-			{{message}}
+
+			<color-tool></color-tool>
+
 		</main>
 
 		<script src="js/ng/angular.js"></script>
@@ -22,9 +24,137 @@
 
 			'use strict';
 
-			angular.module("MyApp", [])
+			const myAppModule = angular.module("MyApp", []);
+
+			const originalComponent = myAppModule.component.bind(myAppModule);
+
+			myAppModule.component = function(selector, config) {
+
+				if (config.restrict) {
+
+					this.directive(selector, function() {
+
+						const ddo = Object.assign({
+							restrict: 'A',
+							controllerAs: '$ctrl',
+							bindToController: true,
+							scope: {},
+							controller: function() { }
+						}, config);
+
+						Object.assign(ddo.scope, config.bindings);
+
+						delete ddo.bindings;
+
+						return ddo;
+					});				
+
+				} else {
+					originalComponent(selector, config);
+				}
+
+				return myAppModule;
+
+			};
+
+			angular.module("MyApp")
+				.component("toolHeader", {
+					template: `
+						<header>
+							<h1>{{vm.message}}</h1>
+						</header>
+					`,
+					controllerAs: 'vm',
+					bindings: {
+						message: '<'
+					}
+				})
+				.component('colorRow', {
+					restrict: 'A',
+					template: '<span>{{vm.color}}</span>',
+					controllerAs: 'vm',
+					bindings: {
+						color: '<colorRow'
+					}
+				})
+				.component("toolList", {
+					template: `
+						<ul>
+							<li color-row="color" ng-repeat="color in vm.sortedColors"></li>
+						</ul>
+					`,
+					controllerAs: 'vm',
+					bindings: {
+						colors: '<'
+					},
+					controller: function() {
+
+						var vm = this;						
+
+						var lastColors = null;
+
+						Object.defineProperty(vm, 'sortedColors', {
+							configurable: true,
+							enumerable: true,
+							get: function() {
+
+								if (lastColors !== vm.colors) {
+									console.log('sorting');
+									vm._sortedColors = [ ...vm.colors ].sort();
+									//vm._sortedColors = vm.colors.concat().sort();
+									lastColors = vm.colors;
+								}
+
+								console.log('got colors');
+								return vm._sortedColors;
+							}
+						});
+
+					}
+
+				})
+				.component('toolForm', {
+
+					template: `
+						<form>
+							<label for="new-color-input">New Color:</label>
+							<input type="text" id="new-color-input" ng-model="vm.newColor">
+							<button type="button" ng-click="vm.colorSubmitted({ color: vm.newColor })">
+								Add Color
+							</button>
+						</form>
+					`,
+					controllerAs: 'vm',
+					bindings: {
+						colorSubmitted: '&'
+					}
+				})
+				.component("colorTool", {
+					template: `
+						<tool-header message="vm.message"></tool-header>
+						<tool-list colors="vm.colors"></tool-list>
+						<tool-form color-submitted="vm.addColor(color)"></tool-form>
+					`,
+					controllerAs: 'vm',
+					controller: function() {
+						var vm = this;
+						vm.colors = ['green','white','saffron','red','blue','crimson'];
+						vm.message = "Color Tool";
+						vm.addColor = function(newColor) {
+
+							// if ((e.target.type === "text" && e.keyCode === 13)
+							// 	|| e.target.type === 'button') {
+
+								vm.colors = [ ...vm.colors, newColor ];
+								//vm.colors = vm.colors.concat(vm.newColor);
+								// vm.newColor = '';
+							// }
+						};
+					}
+				})
 				.run(["$rootScope", ($rootScope) => {
-					$rootScope.message = "Hello World!";
+
+
 				}]);
 
 		</script>
