@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Angular.js Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+
+		<main class="container" ng-app="MyApp">
+
+			<list-box items="todos">
+				<header>
+					<h2>{{listTitle}}</h2>
+				</header>
+				<footer>
+					<small>Copyright 2016, My Content</small>
+				</footer>
+			</list-box>
+			
+		</main>
+
+		<script src="js/ng/angular.js"></script>
+		<script>
+
+			'use strict';
+
+			angular.module("MyApp", [])
+				.component("listBox", {
+					transclude: {
+						header: 'header',
+						footer: 'footer'
+					},
+					template: `
+						<ng-transclude ng-transclude-slot="header"></ng-transclude>
+						<ul>
+							<li ng-repeat="item in $ctrl.items">{{item}}</li>
+						</ul>
+						<ng-transclude ng-transclude-slot="footer"></ng-transclude>
+					`,
+					bindings: {
+						items: '<'
+					},
+					controller: function() {
+						this.listTitle = 'Controller List Title';
+					}
+				})
+				.run(function($rootScope) {
+					$rootScope.todos = ['task 1', 'task 2', 'task 3'];
+					$rootScope.listTitle = 'RootScope List Title';
+				});
+
+
+		</script>
+
+	</body>
+
+</html>

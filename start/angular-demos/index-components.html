@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Angular.js Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+
+		<main class="container" ng-app="MyApp">
+
+			<color-tool></color-tool>
+
+		</main>
+
+		<script src="js/ng/angular.js"></script>
+		<script>
+
+			'use strict';
+
+			angular.__module = angular.module;
+			angular.module = function(name, requires, configFn) {
+
+				const theModule = angular.__module(name, requires, configFn);
+				theModule.__component = theModule.component;
+				theModule.component = function(selector, config) {
+
+					if (config.restrict) {
+
+						this.directive(selector, function() {
+
+							const ddo = Object.assign({
+								restrict: 'A',
+								controllerAs: '$ctrl',
+								bindToController: true,
+								scope: {},
+								controller: function() { }
+							}, config);
+
+							Object.assign(ddo.scope, config.bindings);
+
+							delete ddo.bindings;
+
+							return ddo;
+						});				
+
+					} else {
+						this.__component(selector, config);
+					}
+
+					return theModule;
+
+				};
+
+				return theModule;
+
+			};
+
+			angular.module("MyApp", [])
+				.component("toolHeader", {
+					template: `
+						<header>
+							<h1>{{vm.message}}</h1>
+						</header>
+					`,
+					controllerAs: 'vm',
+					bindings: {
+						message: '<'
+					}
+				})
+				.component('colorRow', {
+					restrict: 'A',
+					template: '<span>{{vm.color.name}}</span>',
+					controllerAs: 'vm',
+					bindings: {
+						color: '<colorRow'
+					}
+				})
+				.component("toolList", {
+					template: `
+						<ul>
+							<li color-row="color" ng-repeat="color in vm.colors"></li>
+						</ul>
+					`,
+					controllerAs: 'vm',
+					bindings: {
+						colors: '<'
+					},
+					controller: function($element) {
+
+						console.dir($element);
+
+						this.$onChanges = function() {
+							console.log('on changes');
+						};
+
+						this.$doCheck = function() {
+							console.log('do check');
+						};
+
+						var vm = this;						
+
+						var lastColors = null;
+
+						Object.defineProperty(vm, 'sortedColors', {
+							configurable: true,
+							enumerable: true,
+							get: function() {
+
+								if (lastColors !== vm.colors) {
+									console.log('sorting');
+									vm._sortedColors = [ ...vm.colors ].sort();
+									//vm._sortedColors = vm.colors.concat().sort();
+									lastColors = vm.colors;
+								}
+
+								console.log('got colors');
+								return vm._sortedColors;
+							}
+						});
+
+					}
+
+				})
+				.component('toolForm', {
+
+					template: `
+						<form>
+							<label for="new-color-input">New Color:</label>
+							<input type="text" id="new-color-input" ng-model="vm.newColor">
+							<button type="button" ng-click="vm.colorSubmitted({ color: vm.newColor })">
+								Add Color
+							</button>
+						</form>
+					`,
+					controllerAs: 'vm',
+					bindings: {
+						colorSubmitted: '&'
+					}
+				})
+				.component("colorTool", {
+					template: `
+						<tool-header message="vm.message"></tool-header>
+						<tool-list colors="vm.colors"></tool-list>
+						<tool-form color-submitted="vm.addColor(color)"></tool-form>
+					`,
+					controllerAs: 'vm',
+					controller: function($timeout) {
+						var vm = this;
+						vm.colors = [
+							{name:'green'},{name:'white'},{name:'saffron'},
+							{name:'red'},{name:'blue'},{name:'crimson'}
+						];
+						vm.message = "Color Tool";
+						vm.addColor = function(newColor) {
+
+							// if ((e.target.type === "text" && e.keyCode === 13)
+							// 	|| e.target.type === 'button') {
+
+								vm.colors = [ ...vm.colors, newColor ];
+								//vm.colors = vm.colors.concat(vm.newColor);
+								// vm.newColor = '';
+							// }
+						};
+
+						$timeout(function() {
+							console.log('timeout expired');
+
+							console.log(vm.colors[0].name = 'test');
+
+							//vm.colors = vm.colors.concat();
+						},2000);
+
+					}
+				})
+				.run(["$rootScope", ($rootScope) => {
+
+
+				}]);
+
+		</script>
+
+	</body>
+
+</html>
