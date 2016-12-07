@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+			
+			// var letters = [ 'a','b','c',true, function() {}, {}, undefined ];
+
+			// var t = { id: 4 };
+			// console.log(t.toString());
+
+			// letters[t] = 45;
+
+			// letters[10000] = 'test';
+
+			// letters.someOtherProp = 'India Rocks!';
+
+			// var items = [1,2,3,4,5];
+			// items.push('a');
+
+
+			// console.log(letters['1']);
+
+			// console.dir(letters);
+			// console.log(letters.length);
+
+			//var items = [1,2,3,4,5];
+
+			// mutable, easy way, when performance does not matter
+			// items.push(8);
+			// console.log(items.pop());
+
+			// items.unshift(-8);
+			// console.log(items.shift());
+
+			// items.splice(2, 1, 8);
+
+			// immutable, harder way, when performance does matter
+			// for change detection purposes
+			// var newItems = items.concat(8);
+			// newItems = newItems.slice(0, newItems.length-1);
+
+			// newItems = [8].concat(newItems);
+			// newItems = newItems.slice(1);
+
+			// newItems = newItems.slice(0,2)
+			// 	.concat(8).concat(newItems.slice(3));
+
+			// ES2015 spread and rest operators
+			// let newItems = [ ...items, 8 ];
+			// newItems.slice(0, newItems.length -1);
+
+			// newItems = [ 8, ...items ];
+			// let [ first, ...newItems2 ] = newItems;
+
+			// newItems = [ ...newItems.slice(0,2), 8, ...newItems.slice(3) ];
+
+			// var newItems = items.concat(8);
+			// //newItems = newItems.slice(newItems.length-1);
+			// var newItems2 = newItems.slice(-1);
+			// console.log(newItems);
+			// console.log(newItems2);
+
+			//console.dir(items);
+			//console.dir(newItems);
+			//console.dir(newItems2);
+			//console.log(items === newItems2);
+
+
+			var nums = [1,2,3,4,5,6,7,8,9];
+
+			var numsGreaterThan5 = nums.filter(function(num) {
+				return num > 5;
+			});
+
+			var numsGreaterThan5 = nums.filter(num => num > 5);
+
+			var numsSquared = nums.map(num => num ** 2);
+
+			var numSum = nums.reduce((prevValue, currentValue) => {
+				return prevValue + currentValue;
+			}, 2);
+
+			console.log(numSum);
+
+
+
+		</script>
+
+	</body>
+
+</html>

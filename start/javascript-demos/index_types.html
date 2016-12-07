@@ -19,35 +19,34 @@
 
 			'use strict';
 
-			// const doIt = (msg, repeatTimes) => {
+			var t;
 
-			// 	while (repeatTimes--) {
-			// 		console.log(msg);
-			// 	}
-			// };
+			t = 'hi!';
+			console.log(typeof t);
 
-			const square = x => x ** 2; 
+			t = 2;
+			console.log(typeof t);
 
-			//doIt('Hyderabad Rocks!', 5);
-			//console.log(square(3));
+			t = false;
+			console.log(typeof t);
 
-			function outer() {
+			t = { id:2, name:'Demo' };
+			console.log(typeof t);
 
-				//var that = this;
+			t = ['green','white','saffron'];
+			console.log(typeof t);
+			console.log(t instanceof Array);
 
-				const doIt = () => {
-					console.log(this);
-				};
+			t = function() { };
+			t();
+			t.someProp = 'test';
+			console.log(typeof t);
 
-				// function doIt() {
-				// 	//console.log(this);
-				// 	console.log(that);
-				// }
+			t = undefined;
+			console.log(typeof t);
 
-				doIt();
-			}
-
-			outer.call({ id :2 });
+			t = null;
+			console.log(typeof t);
 
 
 		</script>

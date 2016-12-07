@@ -19,35 +19,13 @@
 
 			'use strict';
 
-			// const doIt = (msg, repeatTimes) => {
+			console.log(1/0);
 
-			// 	while (repeatTimes--) {
-			// 		console.log(msg);
-			// 	}
-			// };
+			console.log(Infinity === Infinity);
 
-			const square = x => x ** 2; 
+			console.log(isNaN(parseInt('hello!', 10)));
 
-			//doIt('Hyderabad Rocks!', 5);
-			//console.log(square(3));
-
-			function outer() {
-
-				//var that = this;
-
-				const doIt = () => {
-					console.log(this);
-				};
-
-				// function doIt() {
-				// 	//console.log(this);
-				// 	console.log(that);
-				// }
-
-				doIt();
-			}
-
-			outer.call({ id :2 });
+			console.log(typeof NaN);
 
 
 		</script>

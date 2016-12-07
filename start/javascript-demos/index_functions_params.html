@@ -19,35 +19,34 @@
 
 			'use strict';
 
-			// const doIt = (msg, repeatTimes) => {
+			// doIt();
 
-			// 	while (repeatTimes--) {
-			// 		console.log(msg);
-			// 	}
+			// // function declaration
+			// function doIt() {
+			// 	console.log('did it!');
+			// }
+
+			// // function expression
+			// var doIt2 = function doIt2() {
+			// 	console.log('did it 2!');
 			// };
+			
+			// doIt2();
 
-			const square = x => x ** 2; 
-
-			//doIt('Hyderabad Rocks!', 5);
-			//console.log(square(3));
-
-			function outer() {
-
-				//var that = this;
-
-				const doIt = () => {
-					console.log(this);
-				};
-
-				// function doIt() {
-				// 	//console.log(this);
-				// 	console.log(that);
-				// }
-
-				doIt();
+			function doIt(a,b,c, ...d) {
+				console.log(a,b,c);
+				console.log(d);
+				//console.dir(arguments);
 			}
 
-			outer.call({ id :2 });
+			// ES2015
+			doIt(...[1,2,3,4,5]);
+
+			// ES5.1
+			doIt.apply(null, [1,2,3,4,5]);
+
+
+
 
 
 		</script>

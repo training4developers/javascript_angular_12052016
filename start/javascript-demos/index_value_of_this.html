@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			// function doIt(a,b,c) {
+
+			// 	console.log(this);
+			// 	console.log(a,b,c);
+			// }
+
+			// doIt();
+
+			// window.doIt();
+
+			// var o = { id: 2, doIt: doIt };
+
+			// o.doIt();
+
+			// console.log(o.doIt === doIt);
+
+			// o.doIt.call({ id: 3 }, 1, 2, 3);
+			// o.doIt.apply({ id: 3 }, [1, 2, 3]);
+
+			// var fn = o.doIt.bind({ id: 4 });
+
+			// fn();
+
+			var o = {
+				id: 1, 
+				doIt: function() {
+					console.log('time for a break');
+					console.log(this);
+				}
+			}
+
+			var timeForABreak = o.doIt;
+
+			delete o.doIt;
+
+			timeForABreak();
+
+			//setTimeout(o.doIt.bind(o), 2000);
+
+
+			// setTimeout(function() {
+			// 	o.doIt();
+			// }, 2000);
+
+
+
+
+
+
+
+		</script>
+
+	</body>
+
+</html>
