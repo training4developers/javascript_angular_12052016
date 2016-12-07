@@ -15,10 +15,10 @@ Intermediate JavaScript
 - Wednesday - Friday: 9:00am to 5:00pm
 
 Breaks:
-- Morning: 10:30am to 10:40am
-- Lunch: Noon to 1pm
+- Morning: 10:35am to 10:45am
+- Lunch: 12:15pm to 1pm
 - Afternoon #1: 2:15pm to 2:25pm
-- Afternoon #1: 3:40pm to 3:50pm
+- Afternoon #2: 3:40pm to 3:50pm
 
 ## Course Outline
 
@@ -29,9 +29,9 @@ Advanced Angular.js (Monday - Tuesday)
 
 Intermediate JavaScript (Wednesday - Friday)
 
-- Day 1 - Functions, Value of This, Objects, Events Driven Programming
+- Day 1 - Functions, Value of This, Objects, Event-Driven Programming
 - Day 2 - DOM, Asynchronous Programming, AJAX, Promises, Closures
-- Day 3 - Regular Expressions, Project Configuration, Patterns
+- Day 3 - Project Configuration, Patterns
 
 ## Links
 
