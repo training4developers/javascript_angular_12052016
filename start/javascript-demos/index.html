@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			var person = {
+				getFullName: function() {
+					return this.firstName + ' ' + this.lastName;
+				}
+				
+			};
+
+			var magesh = Object.create(person);
+			magesh.firstName = 'Magesh';
+			magesh.lastName = 'Venugopal';
+
+			var ram = Object.create(person);
+			ram.firstName = 'Ram';
+			ram.lastName = 'Chinnasamy';
+
+
+			console.log(magesh.getFullName());
+			console.log(ram.getFullName());
+
+			console.log(magesh.getFullName === ram.getFullName);
+			
+			
+			// var parent = {
+			// 	amt: 20000,
+			// 	address: {
+			// 		city: 'Morrisville',
+			// 		state: 'NC'
+			// 	}
+			// };
+
+			// var child = Object.create(parent);
+			// child.amt = 10;
+			// //child.address.state = 'CA';
+			// child.address = {
+			// 	state: 'CA'
+			// };
+
+			// console.log(child.amt);
+			// console.log(child.address.state);
+			// console.dir(child);
+			// console.dir(Object.getPrototypeOf(child));
+
+		</script>
+
+	</body>
+
+</html>

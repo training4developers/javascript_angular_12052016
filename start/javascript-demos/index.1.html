@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			function Person(firstName, lastName) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+			}
+
+			Person.prototype.getFullName = function() {
+				return this.firstName + ' ' + this.lastName;
+			};
+
+			function Student(studentId, firstName, lastName) {
+				this._super.call(this, firstName, lastName);
+				this.studentId = studentId;
+
+			}
+
+			Student.prototype = Object.create(Person.prototype);
+			Student.prototype.constructor = Student;
+			Student.prototype._super = Person;
+
+			Student.prototype.getRecordInfo = function() {
+				return this.studentId + ' ' + this.lastName + ', ' + this.firstName;
+			};
+
+
+			var s = new Student(1, 'Eric','Greene');
+			console.log(s.getFullName());
+			console.log(s.getRecordInfo());
+			console.dir(s);
+
+
+			// var PersonFnPrototype = Object.getPrototypeOf(Person);
+
+			// var personPrototype = Object.getPrototypeOf(p);
+
+			// console.log(personPrototype === Person.prototype);
+
+			// console.dir(Person);
+
+
+		</script>
+
+	</body>
+
+</html>
