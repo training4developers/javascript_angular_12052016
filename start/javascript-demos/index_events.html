@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main>
+			<button id="my-button">Click!</button>
+		</main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			var buttonClickFn = function() {
+				console.log('clicked!');
+			}
+			var myButton = $('#my-button');
+
+			console.dir($(myButton));
+
+			$(myButton)[0];
+
+			myButton.on('click', buttonClickFn);
+			myButton.off('click', buttonClickFn);
+
+			myButton.addEventListener(buttonClickFn);
+			myButton.removeEventListener(buttonClickFn);
+
+			$('#my-button').remove();
+
+		</script>
+
+	</body>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			const p1 = new Promise(resolve => setTimeout(() => resolve('a'), 2000));
+			const p2 = new Promise(resolve => setTimeout(() => resolve('b'), 4000));
+			const p3 = new Promise((resolve, reject) => setTimeout(() => reject('c'), 6000));
+			const p4 = new Promise(resolve => setTimeout(() => resolve('d'), 8000));
+
+			p1.then(console.log);
+			p2.then(console.log);
+			p3.then(console.log).catch(results => console.log(`inside p3 catch ${results}`));
+			p4.then(console.log);
+
+			const p5 = Promise.all([p1,p2]);
+
+			p5.then(function() {
+				console.log('p5 done');
+			})
+
+			Promise.all([p5,p3,p4]).then(function(results) {
+				console.log(results);
+				console.log('all done');
+			}).catch(function(results) {
+				console.log(results);
+				console.log('one failed');
+			});
+
+			async function doIt() {
+
+				const url = '/api/widgets';
+
+				const widgets = await ajax(url);
+
+				console.log(widgets);
+
+
+			}
+
+
+
+
+		</script>
+
+	</body>
+
+</html>

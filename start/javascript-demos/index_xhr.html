@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			var xhr = new XMLHttpRequest();
+
+			xhr.addEventListener('readystatechange', function() {
+
+				if (xhr.readyState === 4 && xhr.status === 200) {
+					console.log(JSON.parse(xhr.responseText));
+				}
+
+			});
+
+			xhr.open('GET', '/api/widgets');
+			xhr.send();
+
+
+
+			ajax().then(function(results) {
+				console.log(results);
+			});
+
+
+		</script>
+
+	</body>
+
+</html>

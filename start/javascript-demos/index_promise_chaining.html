@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			// undefined = resolved promise
+			// any other value = resolved promise
+			// Promise = ?
+			// throw Error = rejected promise
+			// Promise.reject = rejected promise
+
+
+			var p1 = new Promise(function(resolve, reject) {
+				setTimeout(function() {
+					//throw Error('something did not work out as expected...');
+					resolve('a');
+					//reject('something did not work out as expected...');
+				}, 2000);
+			});
+
+			p1.then(function() {
+
+				console.log('p1 resolved');
+				console.log('waiting on p2')
+
+				// return new Promise(function(resolve) {
+				// 	setTimeout(function() {
+				// 		resolve('b');
+				// 	}, 2000);
+				// });
+
+				// return "Sushma";
+				return Promise.reject('something happened...');
+
+			}).then(function() {
+				console.log('p2 resolved');
+			}).catch(function(results) {
+				console.log(results);
+			});
+
+			console.log('waiting on p1')
+
+		</script>
+
+	</body>
+
+</html>

@@ -12,31 +12,58 @@
 	</head>
 
 	<body>
-		<main></main>
+		<main>
+			<button id="my-button">Click!</button>
+		</main>
 		<script src="js/jquery/jquery-3.1.1.min.js"></script>
 		<script src="js/ng/angular.min.js"></script>
 		<script>
 
 			'use strict';
 
-			var xhr = new XMLHttpRequest();
+			var p = { parentProp: 'd' };
 
-			xhr.addEventListener('readystatechange', function() {
+			var a = Object.create(p);
+			a.prop1 = '1';
+			a.prop2 = '2';
+			a.prop3 = {};
 
-				if (xhr.readyState === 4 && xhr.status === 200) {
-					console.log(JSON.parse(xhr.responseText));
-				}
+			Object.freeze(a);
 
-			});
+			var c = {
+				prop1: '500',
+				prop4: 'ggg'
+			};
 
-			xhr.open('GET', '/api/widgets');
-			xhr.send();
+			var b = {};
+
+			// Object.assign(b, a, c);
+
+			// console.dir(b);
+
+			// b.prop1 = '3';
+
+			// console.log(b.prop3 === a.prop3);
+
+			// for (var prop in a) {
+			// 	if (a.hasOwnProperty(prop)) {
+			// 		console.log(prop);
+			// 	}
+			// }
+
+			// console.log(Object.keys(a));
+			// console.log(Object.values(a));
+			// console.log(Object.entries(a));
 
 
+			function myAssign(dest, ...src) {
+				src.forEach(o => Object.keys(o).forEach(prop => dest[prop] = o[prop]));
+				return dest;
+			}
 
-			ajax().then(function(results) {
-				console.log(results);
-			});
+			console.log(myAssign(b, a, c));
+
+
 
 
 		</script>
