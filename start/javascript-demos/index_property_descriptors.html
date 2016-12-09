@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			var id = 2;
+
+			var t = {
+				id, 
+
+				getFullName() {
+
+				},
+
+				get age() {
+					return this._age;
+				},
+				set age(value) {
+					this._age = value;
+				}
+
+			};
+
+			//t.name = 'Bob';
+
+			Object.defineProperty(t, 'name', {
+				configurable: true,
+				enumerable: true,
+				// writable: true,
+				// value: 'Bob'
+				get: function() {
+					console.log('get');
+					return this._name;
+				},
+				set: function(value) {
+					console.log('set');
+					this._name = value;
+				}
+			});
+
+			t.name = 'Timmy';
+			console.log(t.name);
+
+			Object.isFrozen()
+
+			// Object.defineProperty(t, 'name', {
+			// 	configurable: true,
+			// 	enumerable: true,
+			// 	writable: false,
+			// 	value: 'Bob'
+			// });
+
+
+		</script>
+
+	</body>
+
+</html>

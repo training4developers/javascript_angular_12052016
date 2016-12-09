@@ -19,6 +19,22 @@
 
 			'use strict';
 
+			var raghu = {
+				name: 'raghu'
+			};
+
+			var vijay = Object.create(raghu);
+
+			console.log(vijay.name);
+
+			var vijayDad = Object.getPrototypeOf(vijay);
+
+			var saikiran = {};
+
+			Object.setPrototypeOf(saikiran, vijayDad);
+
+			console.log(saikiran.name);
+
 
 		</script>
 

@@ -19,6 +19,33 @@
 
 			'use strict';
 
+			function myBind(fn, valueOfThis) {
+				return function() {
+					fn.call(valueOfThis);
+				};
+			}
+
+			var x=0,y=0,funcs=[];
+
+			for (; x<5; x++) {
+
+				(function() {
+					var t = x;
+					funcs.push(function() {
+						console.log(t);
+					})
+				})();
+				
+
+				funcs.push(myBind(function() {
+					console.log(this.x);
+				},{ x }));
+			}
+
+			for (; y<5; y++) {
+				funcs[y]();
+			}
+
 
 		</script>
 

@@ -19,6 +19,35 @@
 
 			'use strict';
 
+			try {
+
+				var t = 3;
+
+				setTimeout(function() {
+
+					try {
+
+						throw Error('something did not work out here...');
+
+						console.log('did it!');
+						console.log(t);
+
+					} catch(err) {
+						console.log('I can catch the error too!!!!!');
+
+					}
+
+
+				},0);
+
+
+				console.log('made it here');
+
+			} catch(err) {
+				console.log('caught the error!!!!!');
+			}
+
+
 
 		</script>
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Intermediate JavaScript Demo App</title>
+		<link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-theme.min.css" rel="stylesheet">
+		<link href="css/site.css" rel="stylesheet">
+		<base href="/">
+	</head>
+
+	<body>
+		<main></main>
+		<script src="js/jquery/jquery-3.1.1.min.js"></script>
+		<script src="js/ng/angular.min.js"></script>
+		<script>
+
+			'use strict';
+
+			class Person {
+				constructor(firstName, lastName) {
+					this.firstName = firstName;
+					this.lastName = lastName;
+				}
+
+				getFullName() {
+					return this.firstName + ' ' + this.lastName;
+				}
+			}
+
+			class Student extends Person {
+				constructor(studentId, firstName, lastName) {
+					super(firstName, lastName);
+					this.studentId = studentId;
+				}
+
+				getRecordInfo() {
+					return this.studentId + ' ' + this.lastName + ', ' + this.firstName;
+				}
+			}
+
+			var s = new Student(1, 'Eric','Greene');
+
+			var studentPrototype = Object.getPrototypeOf(s);
+
+			studentPrototype.getRecordInfo = function() {
+				console.log('you\'ve been hacked!');
+			};
+
+
+			console.log(s.getFullName());
+			console.log(s.getRecordInfo());
+			console.dir(s);
+
+
+		</script>
+
+	</body>
+
+</html>

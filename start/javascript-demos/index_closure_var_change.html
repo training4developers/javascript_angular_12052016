@@ -19,6 +19,26 @@
 
 			'use strict';
 
+			function outer() {
+
+				var t = 10;
+
+				setTimeout(function() {
+					t = 20;
+				}, 2000)
+
+				return function inner() {
+					console.log(t);
+				};
+			}
+
+			var fn = outer();
+
+			fn();
+
+			setTimeout(function() {
+				fn();
+			}, 4000);
 
 		</script>
 
