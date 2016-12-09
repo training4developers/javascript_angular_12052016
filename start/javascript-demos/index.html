@@ -19,25 +19,32 @@
 
 			'use strict';
 
-			var xhr = new XMLHttpRequest();
+			// function doIt(fn) {
+			// 	setTimeout(fn, 2000)
+			// }
 
-			xhr.addEventListener('readystatechange', function() {
+			// function doSomethingElse() {
 
-				if (xhr.readyState === 4 && xhr.status === 200) {
-					console.log(JSON.parse(xhr.responseText));
-				}
+			// }
 
+			// doIt(doSomethingElse);
+
+		
+
+			var youngMan = new Promise(function youngLady(resolve, reject) {
+				setTimeout(function() {
+					reject('she fell in love with someone else...');
+				}, 2000);
 			});
 
-			xhr.open('GET', '/api/widgets');
-			xhr.send();
-
-
-
-			ajax().then(function(results) {
+			youngMan.then(function(results) {
+				console.log('she said yes!');
+			}).catch(function(results) {
+				console.log('she said no!');
 				console.log(results);
 			});
 
+			console.log('young man is waiting...');
 
 		</script>
 
